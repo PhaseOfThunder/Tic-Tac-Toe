@@ -1,0 +1,540 @@
+/* ============================================================
+   COLOR PALETTE — "Ember Twilight"
+   A deep plum ink base with warm rose/gold accents played
+   against cool teal/periwinkle. Warm-vs-cool contrast is what
+   gives it character and keeps X and O clearly distinct.
+
+   BACKDROP
+     --ink        #151221   deep plum-black   page background
+     --ink-deep   #0d0a16   near-black        gradient falloff
+     --surface    #211b30   raised plum       board / panels
+     --surface-hi #2c2440   hover / borders
+
+   TEXT
+     --text       #ece6f5   soft lilac-white  primary text
+     --text-muted #a29ab8   dusty mauve       secondary text
+
+   ACCENTS
+     --rose       #f2748c   warm blush        player O
+     --gold       #f5b944   amber             highlights / wins
+     --teal       #3ddbb8   bright mint       computer X
+     --peri       #7c8cf8   periwinkle        accents / focus
+   ============================================================ */
+
+:root {
+  --ink: #151221;
+  --ink-deep: #0d0a16;
+  --surface: #211b30;
+  --surface-hi: #2c2440;
+
+  --text: #ece6f5;
+  --text-muted: #a29ab8;
+
+  --rose: #f2748c;
+  --gold: #f5b944;
+  --teal: #3ddbb8;
+  --peri: #7c8cf8;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 24px 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--ink);
+  /* subtle depth so the flat plum doesn't read as dead space */
+  background-image:
+    radial-gradient(circle at 20% 15%, rgba(124, 140, 248, 0.10), transparent 45%),
+    radial-gradient(circle at 82% 78%, rgba(242, 116, 140, 0.10), transparent 45%),
+    radial-gradient(circle at 50% 50%, transparent 30%, var(--ink-deep) 100%);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: 'Space Grotesk', sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ---------- Floating background shapes ---------- */
+.bg-shapes {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  animation: float 12s ease-in-out infinite;
+}
+
+/* Depth tiers: big shapes sit far back (faint + soft), small ones
+   sit close (crisper + brighter). Reads as parallax, not clutter. */
+
+/* -- large, far back -- */
+.shape1 {
+  width: 150px; height: 150px;
+  background: var(--peri);
+  opacity: 0.13;
+  filter: blur(36px);
+  top: 5%; left: 75%;
+  animation-duration: 18s;
+  animation-delay: 0.5s;
+}
+
+.shape2 {
+  width: 190px; height: 190px;
+  background: var(--rose);
+  opacity: 0.11;
+  filter: blur(44px);
+  top: 55%; left: 4%;
+  animation-duration: 22s;
+  animation-delay: 3s;
+}
+
+.shape3 {
+  width: 130px; height: 130px;
+  background: var(--teal);
+  opacity: 0.12;
+  filter: blur(32px);
+  top: 34%; left: 90%;
+  animation-duration: 20s;
+  animation-delay: 1.2s;
+}
+
+/* -- medium, mid-ground -- */
+.shape4 {
+  width: 120px; height: 120px;
+  background: var(--teal);
+  opacity: 0.18;
+  filter: blur(14px);
+  top: 10%; left: 8%;
+  animation-duration: 14s;
+}
+
+.shape5 {
+  width: 80px; height: 80px;
+  background: var(--rose);
+  opacity: 0.2;
+  filter: blur(10px);
+  top: 60%; left: 80%;
+  animation-duration: 10s;
+  animation-delay: 1s;
+}
+
+.shape6 {
+  width: 100px; height: 100px;
+  background: var(--gold);
+  opacity: 0.15;
+  filter: blur(16px);
+  top: 84%; left: 62%;
+  animation-duration: 17s;
+  animation-delay: 2.4s;
+}
+
+.shape7 {
+  width: 70px; height: 70px;
+  background: var(--peri);
+  opacity: 0.2;
+  filter: blur(8px);
+  top: 88%; left: 88%;
+  animation-duration: 13s;
+  animation-delay: 4s;
+}
+
+/* -- small, close and crisp -- */
+.shape8 {
+  width: 60px; height: 60px;
+  background: var(--gold);
+  opacity: 0.26;
+  filter: blur(3px);
+  top: 75%; left: 15%;
+  animation-duration: 16s;
+  animation-delay: 2s;
+}
+
+.shape9 {
+  width: 45px; height: 45px;
+  background: var(--teal);
+  opacity: 0.22;
+  filter: blur(3px);
+  top: 40%; left: 45%;
+  animation-duration: 9s;
+  animation-delay: 1.5s;
+}
+
+.shape10 {
+  width: 34px; height: 34px;
+  background: var(--gold);
+  opacity: 0.28;
+  filter: blur(2px);
+  top: 24%; left: 30%;
+  animation-duration: 11s;
+  animation-delay: 0.8s;
+}
+
+.shape11 {
+  width: 40px; height: 40px;
+  background: var(--rose);
+  opacity: 0.26;
+  filter: blur(2px);
+  top: 16%; left: 57%;
+  animation-duration: 15s;
+  animation-delay: 3.6s;
+}
+
+.shape12 {
+  width: 28px; height: 28px;
+  background: var(--peri);
+  opacity: 0.3;
+  filter: blur(2px);
+  top: 68%; left: 34%;
+  animation-duration: 12s;
+  animation-delay: 5s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0) scale(1);
+  }
+  33% {
+    transform: translateY(-30px) translateX(20px) scale(1.1);
+  }
+  66% {
+    transform: translateY(20px) translateX(-15px) scale(0.95);
+  }
+}
+
+/* Respect users who get motion sickness from ambient animation. */
+@media (prefers-reduced-motion: reduce) {
+  .shape {
+    animation: none;
+  }
+}
+
+/* ---------- Game grid ---------- */
+#grid {
+  /* sit above the decorative shapes */
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+
+  margin: 0;
+  padding: 14px;
+
+  background: rgba(33, 27, 48, 0.55);
+  border: 1px solid var(--surface-hi);
+  border-radius: 18px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 18px 50px rgba(13, 10, 22, 0.6);
+}
+
+.slot {
+  /* square cells that shrink on small screens */
+  width: min(24vw, 104px);
+  aspect-ratio: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: inherit;
+  font-size: clamp(2rem, 9vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1;
+
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--surface-hi);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease;
+}
+
+.slot:hover {
+  background: var(--surface-hi);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(13, 10, 22, 0.5);
+}
+
+.slot:active {
+  transform: translateY(0);
+}
+
+.slot:focus-visible {
+  outline: 2px solid var(--peri);
+  outline-offset: 2px;
+}
+
+/* a filled slot is no longer interactive */
+.slot.player,
+.slot.computer {
+  cursor: default;
+  transform: none;
+  box-shadow: none;
+}
+
+.slot.player {
+  color: var(--peri);
+  background: var(--surface);
+}
+
+.slot.computer {
+  color: var(--rose);
+  background: var(--surface);
+}
+
+/* ---------- Title & turn counter ---------- */
+#top-text {
+  /* sit above the decorative shapes */
+  position: relative;
+  z-index: 1;
+
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+#title {
+  margin: 0;
+  font-size: clamp(2.2rem, 8vw, 3.4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+
+  /* palette gradient painted through the letterforms */
+  color: var(--rose);
+  background: linear-gradient(100deg, var(--rose), var(--gold) 45%, var(--teal));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#turn {
+  /* a small pill under the title */
+  display: inline-block;
+  margin: 14px 0 0;
+
+  padding: 6px 18px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+
+  color: var(--text-muted);
+  background: rgba(33, 27, 48, 0.55);
+  border: 1px solid var(--surface-hi);
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+}
+
+/* ---------- Win / lose screens ---------- */
+/* Full-viewport overlays. Hidden until Python adds .visible to
+   #win-screen or #lose-screen. */
+.end-screen {
+  display: none;
+
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+
+  /* dim and blur the board behind the card */
+  background: rgba(13, 10, 22, 0.72);
+  backdrop-filter: blur(10px);
+}
+
+.end-screen.visible {
+  display: flex;
+  animation: end-fade 0.28s ease-out;
+}
+
+.end-card {
+  width: min(90vw, 380px);
+  padding: 38px 32px;
+  text-align: center;
+
+  background: rgba(33, 27, 48, 0.92);
+  border: 1px solid var(--surface-hi);
+  border-radius: 22px;
+  box-shadow: 0 26px 70px rgba(13, 10, 22, 0.75);
+
+  animation: end-rise 0.32s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+
+.end-eyebrow {
+  margin: 0 0 10px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.end-title {
+  margin: 0;
+  font-size: clamp(2rem, 7vw, 2.7rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.end-message {
+  margin: 14px 0 26px;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.end-button {
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  padding: 13px 30px;
+  color: var(--ink);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+.end-button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.end-button:active {
+  transform: translateY(0);
+}
+
+.end-button:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+/* -- win: gold, celebratory -- */
+#win-screen .end-title {
+  color: var(--gold);
+  text-shadow: 0 0 34px rgba(245, 185, 68, 0.4);
+}
+
+#win-screen .end-card {
+  border-color: rgba(245, 185, 68, 0.35);
+}
+
+#win-screen .end-button {
+  background: var(--gold);
+  box-shadow: 0 8px 24px rgba(245, 185, 68, 0.3);
+}
+
+/* -- lose: rose, cooler and quieter -- */
+#lose-screen .end-title {
+  color: var(--rose);
+  text-shadow: 0 0 34px rgba(242, 116, 140, 0.35);
+}
+
+#lose-screen .end-card {
+  border-color: rgba(242, 116, 140, 0.3);
+}
+
+#lose-screen .end-button {
+  background: var(--rose);
+  box-shadow: 0 8px 24px rgba(242, 116, 140, 0.28);
+}
+
+/* -- tie: periwinkle, neutral between the two -- */
+#tie-screen .end-title {
+  color: var(--peri);
+  text-shadow: 0 0 34px rgba(124, 140, 248, 0.35);
+}
+
+#tie-screen .end-card {
+  border-color: rgba(124, 140, 248, 0.3);
+}
+
+#tie-screen .end-button {
+  background: var(--peri);
+  box-shadow: 0 8px 24px rgba(124, 140, 248, 0.28);
+}
+
+@keyframes end-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes end-rise {
+  from { opacity: 0; transform: translateY(18px) scale(0.94); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .end-screen.visible,
+  .end-card {
+    animation: none;
+  }
+}
+
+/* ---------- Start screen (mode select) ---------- */
+#start-screen .end-title {
+  color: var(--text);
+}
+
+#start-screen .end-message {
+  margin-bottom: 24px;
+}
+
+.mode-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mode-button {
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  padding: 15px 24px;
+  color: var(--ink);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.12s ease, filter 0.18s ease;
+}
+
+.mode-button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.mode-button:active {
+  transform: translateY(0);
+}
+
+.mode-button:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+.mode-button[data-mode="computer"] {
+  background: var(--teal);
+  box-shadow: 0 8px 24px rgba(61, 219, 184, 0.28);
+}
+
+.mode-button[data-mode="friend"] {
+  background: var(--gold);
+  box-shadow: 0 8px 24px rgba(245, 185, 68, 0.28);
+}

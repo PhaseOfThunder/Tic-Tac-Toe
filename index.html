@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap">
+
+    <link rel="stylesheet" href="https://pyscript.net/releases/2026.7.3/core.css">
+    <link rel="stylesheet" href="./style.css">
+    <script type="module" src="https://pyscript.net/releases/2026.7.3/core.js"></script>
+</head>
+<body>
+    <!-- decorative floating shapes, purely visual -->
+  <div class="bg-shapes">
+    <span class="shape shape1"></span>
+    <span class="shape shape2"></span>
+    <span class="shape shape3"></span>
+    <span class="shape shape4"></span>
+    <span class="shape shape5"></span>
+    <span class="shape shape6"></span>
+    <span class="shape shape7"></span>
+    <span class="shape shape8"></span>
+    <span class="shape shape9"></span>
+    <span class="shape shape10"></span>
+    <span class="shape shape11"></span>
+    <span class="shape shape12"></span>
+  </div>
+
+  <div id="top-text">
+    <h1 id = "title">Tic Tac Toe</h1>
+    <h3 id="turn">Turn: #1</h3>
+  </div>
+
+  <div id="grid">
+    <button class="slot" data-index="0"></button>
+    <button class="slot" data-index="1"></button>
+    <button class="slot" data-index="2"></button>
+    <button class="slot" data-index="3"></button>
+    <button class="slot" data-index="4"></button>
+    <button class="slot" data-index="5"></button>
+    <button class="slot" data-index="6"></button>
+    <button class="slot" data-index="7"></button>
+    <button class="slot" data-index="8"></button>
+  </div>
+
+
+  <!-- shown first; picking a mode hides it and starts the music -->
+  <div id="start-screen" class="end-screen visible">
+    <div class="end-card">
+      <p class="end-eyebrow">Tic Tac Toe</p>
+      <h2 class="end-title">Choose a Mode</h2>
+      <p class="end-message">Who do you want to play against?</p>
+      <div class="mode-buttons">
+        <button class="mode-button" data-mode="computer">Vs Computer</button>
+        <button class="mode-button" data-mode="friend">Vs Friend</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- end-of-game overlays, hidden until Python adds the "visible" class -->
+  <div id="win-screen" class="end-screen">
+    <div class="end-card">
+      <p class="end-eyebrow">Game Over</p>
+      <h2 class="end-title">You Win</h2>
+      <p class="end-message">You outplayed the computer.</p>
+      <button class="end-button">Play Again</button>
+    </div>
+  </div>
+
+  <div id="lose-screen" class="end-screen">
+    <div class="end-card">
+      <p class="end-eyebrow">Game Over</p>
+      <h2 class="end-title">You Lose</h2>
+      <p class="end-message">The computer took that one.</p>
+      <button class="end-button">Play Again</button>
+    </div>
+  </div>
+
+  <div id="tie-screen" class="end-screen">
+    <div class="end-card">
+      <p class="end-eyebrow">Game Over</p>
+      <h2 class="end-title">It's a Tie</h2>
+      <p class="end-message">Nobody could break through.</p>
+      <button class="end-button" id="tie-again">Play Again</button>
+    </div>
+  </div>
+
+    <script type="py" src="./main.py" config="./pyscript.json"></script>
+</body>
+</html>
