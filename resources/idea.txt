@@ -1,0 +1,10 @@
+
+A visual tic tac toe game with a realstic game grid in which each slot is a button.
+The user can click a slot and it will fill up with O.
+The majority game is made in python but implemented in HTML so it can be playable on the web with PyScript.
+
+They will be facing a computer, which will be smart and use the board to determine what it should do.
+The computer will decide what to do, and fill their slot with X.
+
+This game should be polished, meaning styled visuals, constant color theme, and sound effects.
+However, this stuff should be done last, as it is not the core function of the game.
